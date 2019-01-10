@@ -1,8 +1,9 @@
+console.log('taco');
 const content = document.createElement('div');
 content.innerHTML = `
-  <div id="enhance-beyond">
-    Hello Ben
-  <div>`;
+  <div id="enhance-beyond"></div>
+  <p>test</p>
+`;
 
 content.style = `
   width: 256px;
