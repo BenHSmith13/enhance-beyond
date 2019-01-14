@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-console.log('Hello', document.getElementById('enhance-beyond'));
 ReactDOM.render(<App />, document.getElementById('enhance-beyond'));
 
 // If you want your app to work offline and load faster, you can change

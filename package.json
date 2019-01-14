@@ -55,7 +55,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "node scripts/build.js && cp manifest.json ./build/manifest.json && cp content.js ./build/content.js",
+    "build": "node scripts/build.js && cp manifest.json ./build/manifest.json && cp content.js ./build/content.js && cp background.js ./build/background.js",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
