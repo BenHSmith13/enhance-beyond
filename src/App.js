@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import DieRoller from './die_roller/_die_roller';
+import './App.css'; // this isn't working?
 
 // TODO: figure out what to do with styles
 class App extends Component {
@@ -10,6 +10,7 @@ class App extends Component {
         <header className="App-header">
           <h3 className="banner-text" style={{ backgroundColor: '#C53131', textAlign: 'center' }} >Enhance Beyond</h3>
         </header>
+        <DieRoller />
       </div>
     );
   }
