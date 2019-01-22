@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import activeEncounter from './active_encounter';
+import creatures from './creatures';
 
 const reducers = combineReducers({
-  // visibilityFilter,
-  // todos
+  activeEncounter,
+  creatures,
 })
 
 export default reducers;

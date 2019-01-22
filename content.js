@@ -21,14 +21,15 @@ document.body.appendChild(content);
 // do we want a button to toggle open or do we want it to just open when you mouse near it and stay open intill you leave?
 const button = document.createElement('div');
 button.id = 'sidebar-toggle';
-button.innerHTML = 'Cool Logo Here'
+button.innerHTML = 'EB'
 button.style = `
   position: fixed;
-  top: 10px;
+  top: 0px;
   right: ${sidebarWidth}px;
-  background-color: purple;
-  curser: pointer;
+  background-color: #C53131;
+  cursor: pointer;
   transition: ease .5s all;
+  font-size: 1.7em;
 `;
 button.onclick = () => {
   const sidebar = document.getElementById('sidebar-container');
