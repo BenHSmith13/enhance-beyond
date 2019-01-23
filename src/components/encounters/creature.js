@@ -76,12 +76,13 @@ export default class Creature extends React.Component {
 
     return (
       <div style={styles.container}>
-        AC:
+        Init:
         <input
           style={styles.initiative}
           type='number'
           value={initiative}
           onChange={this.updateInitiative}
+          min='0'
         />
         <input type='text' value={name} onChange={this.updateName}/>
         <HpBar
@@ -93,6 +94,7 @@ export default class Creature extends React.Component {
           value={hpTotal}
           onChange={this.updateTotalHp}
           style={styles.initiative}
+          min='1'
         />
         <button onClick={this.damageHP}>Damage</button>
         <input
@@ -100,6 +102,7 @@ export default class Creature extends React.Component {
           value={this.state.hpMod}
           onChange={this.updateHealthMod}
           style={styles.initiative}
+          min='1'
         />
         <button onClick={this.healHP}>Heal</button>
       </div>
