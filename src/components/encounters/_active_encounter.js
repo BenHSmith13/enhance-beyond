@@ -18,7 +18,9 @@ const mapActionsToProps = {
 
 export class ActiveEncounter extends React.Component {
   static propTypes = {
-
+    newCreature: PropTypes.func.isRequired,
+    creatures: PropTypes.arrayOf(PropTypes.shape({}).isRequired,).isRequired,
+    updateCreature: PropTypes.func.isRequired,
   };
 
   constructor() {
@@ -26,14 +28,6 @@ export class ActiveEncounter extends React.Component {
     this.state = {
 
     };
-  }
-
-  componentDidMount() {
-
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
   }
 
   addNewCreature = () => {

@@ -7,7 +7,9 @@ export default class Creature extends React.Component {
   static propTypes = {
     creature: PropTypes.shape({
       initiative: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
     }).isRequired,
+    updateCreature: PropTypes.func.isRequired,
   };
 
   static styles = {
@@ -28,14 +30,6 @@ export default class Creature extends React.Component {
       isEditing: false,
       hpMod: 1,
     };
-  }
-
-  componentDidMount() {
-
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
   }
 
   updateInitiative = e => {
@@ -72,7 +66,8 @@ export default class Creature extends React.Component {
   render() {
     const { creature } = this.props;
     const styles = Creature.styles;
-    const { ac, concentrating, condition, hp, hpTotal, initiative, name, team, url } = creature
+    // const { ac, concentrating, condition, hp, hpTotal, initiative, name, team, url } = creature
+    const { hp, hpTotal, initiative, name } = creature;
 
     return (
       <div style={styles.container}>

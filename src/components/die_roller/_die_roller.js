@@ -1,6 +1,5 @@
 import _ from 'lodash';
 import React from 'react';
-import PropTypes from 'prop-types';
 
 export default class DieRoller extends React.Component {
   static propTypes = {
@@ -22,14 +21,6 @@ export default class DieRoller extends React.Component {
     };
   }
 
-  componentDidMount() {
-
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
-  }
-
   setDiceNum = e => {
     this.setState({ diceNum: e.target.value });
   }
@@ -48,7 +39,7 @@ export default class DieRoller extends React.Component {
   }
 
   render() {
-    const { } = this.props;
+    // const { } = this.props;
     const styles = DieRoller.styles;
 
     return (

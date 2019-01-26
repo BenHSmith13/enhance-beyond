@@ -5,7 +5,10 @@ import Creature from './creature';
 
 export default class EncounterGroup extends React.Component {
   static propTypes = {
-
+    title: PropTypes.string.isRequired,
+    add: PropTypes.func.isRequired,
+    creatures: PropTypes.arrayOf(PropTypes.shape).isRequired,
+    updateCreature: PropTypes.func.isRequired,
   };
 
   static styles = {
@@ -19,14 +22,6 @@ export default class EncounterGroup extends React.Component {
     this.state = {
 
     };
-  }
-
-  componentDidMount() {
-
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-
   }
 
   render() {

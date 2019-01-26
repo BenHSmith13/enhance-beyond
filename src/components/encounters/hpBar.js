@@ -38,12 +38,13 @@ export default function hpBar(props) {
 
   return (
     <div style={styles.bar}>
-    <div style={styles.progress} />
-    <div style={styles.text}>{hp} / {total}</div>
+      <div style={styles.progress} />
+      <div style={styles.text}>{hp} / {total}</div>
     </div>
   );
 }
 
 hpBar.propTypes = {
-
+  hp: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
 };

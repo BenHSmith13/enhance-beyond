@@ -5,6 +5,6 @@ import creatures from './creatures';
 const reducers = combineReducers({
   activeEncounter,
   creatures,
-})
+});
 
 export default reducers;
