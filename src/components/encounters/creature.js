@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import HpBar from './hpBar';
+import EditCreature from './edit_creature';
+import DisplayCreature from './display_creature';
 
 export default class Creature extends React.Component {
   static propTypes = {
@@ -10,6 +11,7 @@ export default class Creature extends React.Component {
       id: PropTypes.number.isRequired,
     }).isRequired,
     updateCreature: PropTypes.func.isRequired,
+    deleteCreature: PropTypes.func.isRequired,
   };
 
   static styles = {
@@ -63,44 +65,51 @@ export default class Creature extends React.Component {
     // this.setState({ hpMod: 0 }); // NOTE: Do we want to reset this value
   }
 
+  editCreature = () => {
+    this.setState({ isEditing: true });
+  }
+
+  doneEditing = () => {
+    this.setState({ isEditing: false });
+  }
+
+  deleteCreature = () => {
+    const { deleteCreature, creature } = this.props;
+    deleteCreature(creature.id);
+  }
+
   render() {
     const { creature } = this.props;
-    const styles = Creature.styles;
-    // const { ac, concentrating, condition, hp, hpTotal, initiative, name, team, url } = creature
+    // const { ac, concentrating, condition, hp, hpTotal, initiative, name, team, url } = creature;
     const { hp, hpTotal, initiative, name } = creature;
 
+    if (this.state.isEditing) {
+      return (
+        <EditCreature
+          doneEditing={this.doneEditing}
+          hpTotal={hpTotal}
+          initiative={initiative}
+          name={name}
+          updateInitiative={this.updateInitiative}
+          updateName={this.updateName}
+          updateTotalHp={this.updateTotalHp}
+          deleteCreature={this.deleteCreature}
+        />
+      );
+    }
+
     return (
-      <div style={styles.container}>
-        Init:
-        <input
-          style={styles.initiative}
-          type='number'
-          value={initiative}
-          onChange={this.updateInitiative}
-          min='0'
-        />
-        <input type='text' value={name} onChange={this.updateName}/>
-        <HpBar
-          hp={hp}
-          total={hpTotal}
-        />
-        <input
-          type='number'
-          value={hpTotal}
-          onChange={this.updateTotalHp}
-          style={styles.initiative}
-          min='1'
-        />
-        <button onClick={this.damageHP}>Damage</button>
-        <input
-          type='number'
-          value={this.state.hpMod}
-          onChange={this.updateHealthMod}
-          style={styles.initiative}
-          min='1'
-        />
-        <button onClick={this.healHP}>Heal</button>
-      </div>
+      <DisplayCreature
+        damageHP={this.damageHP}
+        edit={this.editCreature}
+        healHP={this.healHP}
+        hp={hp}
+        hpMod={this.state.hpMod}
+        hpTotal={hpTotal}
+        initiative={initiative}
+        name={name}
+        updateHealthMod={this.updateHealthMod}
+      />
     );
   }
 }

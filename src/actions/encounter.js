@@ -1,9 +1,10 @@
-import _ from 'lodash';
+import uuid from '../utils/uuid';
 
 export const actionTypes = {
   ADD_CREATURE: 'ADD_CREATURE',
   LOAD_DATA: 'LOAD_DATA',
   UPDATE_CREATURE: 'UPDATE_CREATURE',
+  DELETE_CREATURE: 'DELETE_CREATURE',
 };
 
 export function loadData(storageData) {
@@ -18,7 +19,7 @@ export function addNewCreatureToEncounter(groupId = 'active') {
     type: actionTypes.ADD_CREATURE,
     payload: {
       groupId,
-      newCreatureId: _.uniqueId(), // TODO: replace this if I add a real backend
+      newCreatureId: uuid(), // TODO: replace this if I add a real backend
     },
   };
 }
@@ -31,5 +32,12 @@ export function updateCreature(creatureId, attribute, value) {
       creatureId,
       value,
     },
+  };
+}
+
+export function deleteCreature(creatureId) {
+  return {
+    type: actionTypes.DELETE_CREATURE,
+    payload: creatureId,
   };
 }

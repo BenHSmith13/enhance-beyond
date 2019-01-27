@@ -25,7 +25,6 @@ export class App extends Component {
     const storedReducers = ['creatures', 'activeEncounter'];
     chrome.storage.sync.get(storedReducers, result => {
       this.props.loadData(result);
-      console.log(result); // eslint-disable-line
     });
   }
 

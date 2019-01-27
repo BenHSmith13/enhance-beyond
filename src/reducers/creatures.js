@@ -43,6 +43,13 @@ export default function creatures(state = initialState, action) {
     return state;
   }
 
+  case encounterActions.DELETE_CREATURE: {
+    const newState = _.cloneDeep(state);
+    delete newState[action.payload];
+    chrome.storage.sync.set({ creatures: newState });
+    return newState;
+  }
+
   default:
     return state;
   }

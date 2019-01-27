@@ -14,6 +14,7 @@ function mapStateToProps(state) {
 const mapActionsToProps = {
   newCreature: encounterActions.addNewCreatureToEncounter,
   updateCreature: encounterActions.updateCreature,
+  deleteCreature: encounterActions.deleteCreature,
 };
 
 export class ActiveEncounter extends React.Component {
@@ -21,6 +22,7 @@ export class ActiveEncounter extends React.Component {
     newCreature: PropTypes.func.isRequired,
     creatures: PropTypes.arrayOf(PropTypes.shape({}).isRequired,).isRequired,
     updateCreature: PropTypes.func.isRequired,
+    deleteCreature: PropTypes.func.isRequired,
   };
 
   constructor() {
@@ -35,7 +37,7 @@ export class ActiveEncounter extends React.Component {
   }
 
   render() {
-    const { creatures, updateCreature } = this.props;
+    const { creatures, updateCreature, deleteCreature } = this.props;
 
     return (
       <div>
@@ -44,6 +46,7 @@ export class ActiveEncounter extends React.Component {
           add={this.addNewCreature}
           creatures={creatures}
           updateCreature={updateCreature}
+          deleteCreature={deleteCreature}
         />
       </div>
     );

@@ -25,6 +25,15 @@ export default function activeEncounter(state = initialState, action) {
     return state;
   }
 
+  case encounterActions.DELETE_CREATURE: {
+    if (_.includes(state.creatureIds, action.payload)) {
+      const newState = { ...state, creatureIds: _.filter(state.creatureIds, id => id !== action.payload) };
+      chrome.storage.sync.set({ activeEncounter: newState });
+      return newState;
+    }
+    return state;
+  }
+
   default:
     return state;
   }

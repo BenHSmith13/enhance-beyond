@@ -9,6 +9,7 @@ export default class EncounterGroup extends React.Component {
     add: PropTypes.func.isRequired,
     creatures: PropTypes.arrayOf(PropTypes.shape).isRequired,
     updateCreature: PropTypes.func.isRequired,
+    deleteCreature: PropTypes.func.isRequired,
   };
 
   static styles = {
@@ -25,7 +26,7 @@ export default class EncounterGroup extends React.Component {
   }
 
   render() {
-    const { title, add, creatures, updateCreature } = this.props;
+    const { title, add, creatures, updateCreature, deleteCreature } = this.props;
     const styles = EncounterGroup.styles;
 
     return (
@@ -36,6 +37,7 @@ export default class EncounterGroup extends React.Component {
           key={c.id}
           creature={c}
           updateCreature={updateCreature}
+          deleteCreature={deleteCreature}
         />)}
       </div>
     );
