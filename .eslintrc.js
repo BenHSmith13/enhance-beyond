@@ -17,6 +17,9 @@ module.exports = {
     ],
     "globals": {
       "chrome": false,
+      "require": false,
+      "module": false,
+      "process": false,
     },
     "rules": {
         "indent": [

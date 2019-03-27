@@ -3,7 +3,7 @@ import { actionTypes as encounterActions } from '../actions/encounter';
 
 const initialState = {
   creatureIds: [],
-  currentTurn: null,
+  currentTurn: 0,
 };
 
 export default function activeEncounter(state = initialState, action) {
@@ -32,6 +32,26 @@ export default function activeEncounter(state = initialState, action) {
       return newState;
     }
     return state;
+  }
+
+  case encounterActions.NEXT_CREATURE: {
+    let placeInOrder = state.currentTurn + 1;
+    if (placeInOrder >= _.size(state.creatureIds)) {
+      placeInOrder = 0;
+    }
+    const newState = { ...state, currentTurn: placeInOrder };
+    chrome.storage.sync.set({ activeEncounter: newState });
+    return newState;
+  }
+
+  case encounterActions.PREV_CREATURE: {
+    let placeInOrder = state.currentTurn - 1;
+    if (placeInOrder <= 0) {
+      placeInOrder = _.size(state.creatureIds);
+    }
+    const newState = { ...state, currentTurn: placeInOrder };
+    chrome.storage.sync.set({ activeEncounter: newState });
+    return newState;
   }
 
   default:

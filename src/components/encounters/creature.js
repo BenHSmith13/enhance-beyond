@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import React from 'react';
 import PropTypes from 'prop-types';
-import EditCreature from './edit_creature';
-import DisplayCreature from './display_creature';
+import HpBar from './hpBar';
+import Slider from 'rc-slider';
 
 export default class Creature extends React.Component {
   static propTypes = {
@@ -12,19 +12,35 @@ export default class Creature extends React.Component {
     }).isRequired,
     updateCreature: PropTypes.func.isRequired,
     deleteCreature: PropTypes.func.isRequired,
+    isActive: PropTypes.bool,
   };
 
   static styles = {
     container: {
       backgroundColor: 'white',
-      margin: '3px 0px',
+      margin: '3px',
       padding: '5px',
       border: '2px solid #C53131', // Team color?
+      color: 'black',
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
     },
     initiative: {
-      width: '40px',
-    }
-  }
+      order: '1',
+      height: '100px',
+      width: '100px',
+      backgroundColor: 'orange',
+    },
+    name: {
+      order: '1',
+    },
+    active: {
+      backgroundColor: 'purple',
+      color: 'white',
+      padding: '5px 0px',
+    },
+  };
 
   constructor() {
     super();
@@ -80,36 +96,71 @@ export default class Creature extends React.Component {
 
   render() {
     const { creature } = this.props;
+    const styles = Creature.styles;
     // const { ac, concentrating, condition, hp, hpTotal, initiative, name, team, url } = creature;
     const { hp, hpTotal, initiative, name } = creature;
 
-    if (this.state.isEditing) {
-      return (
-        <EditCreature
-          doneEditing={this.doneEditing}
-          hpTotal={hpTotal}
-          initiative={initiative}
-          name={name}
-          updateInitiative={this.updateInitiative}
-          updateName={this.updateName}
-          updateTotalHp={this.updateTotalHp}
-          deleteCreature={this.deleteCreature}
-        />
-      );
-    }
-
     return (
-      <DisplayCreature
-        damageHP={this.damageHP}
-        edit={this.editCreature}
-        healHP={this.healHP}
-        hp={hp}
-        hpMod={this.state.hpMod}
-        hpTotal={hpTotal}
-        initiative={initiative}
-        name={name}
-        updateHealthMod={this.updateHealthMod}
-      />
+      <div style={styles.container}>
+        <Slider
+          max={30}
+        />
+        <div style={styles.initiative}>
+          Initiative:
+          {initiative}
+        </div>
+        <div style={styles.name}>
+          <h4>{name}</h4>
+        </div>
+        <HpBar
+          hp={hp}
+          total={hpTotal}
+        />
+        <button onClick={this.damageHP}>Damage</button>
+        <input
+          type='number'
+          value={this.hpMod}
+          onChange={this.updateHealthMod}
+          style={styles.health}
+          min='1'
+        />
+        <button onClick={this.healHP}>Heal</button>
+      </div>
     );
   }
+  //
+  // render() {
+  //   const { creature, isActive } = this.props;
+  //   // const { ac, concentrating, condition, hp, hpTotal, initiative, name, team, url } = creature;
+  //   const { hp, hpTotal, initiative, name } = creature;
+  //   if (this.state.isEditing) {
+  //     return (
+  //       <EditCreature
+  //         doneEditing={this.doneEditing}
+  //         hpTotal={hpTotal}
+  //         initiative={initiative}
+  //         name={name}
+  //         updateInitiative={this.updateInitiative}
+  //         updateName={this.updateName}
+  //         updateTotalHp={this.updateTotalHp}
+  //         deleteCreature={this.deleteCreature}
+  //       />
+  //     );
+  //   }
+  //
+  //   return (
+  //     <DisplayCreature
+  //       damageHP={this.damageHP}
+  //       edit={this.editCreature}
+  //       healHP={this.healHP}
+  //       hp={hp}
+  //       hpMod={this.state.hpMod}
+  //       hpTotal={hpTotal}
+  //       initiative={initiative}
+  //       isActive={isActive}
+  //       name={name}
+  //       updateHealthMod={this.updateHealthMod}
+  //     />
+  //   );
+  // }
 }

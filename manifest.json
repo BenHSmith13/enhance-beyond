@@ -12,7 +12,8 @@
       "js": [
         "/content.js"
       ],
-      "run_at": "document_end"
+      "run_at": "document_end",
+      "all_frames": true
     }
   ],
   "permissions": [
@@ -21,6 +22,9 @@
      "http://*/",
      "https://*/",
      "storage"
- ],
+  ],
+  "web_accessible_resources": [
+    "index.html"
+  ],
   "manifest_version": 2
 }

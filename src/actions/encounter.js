@@ -5,6 +5,8 @@ export const actionTypes = {
   LOAD_DATA: 'LOAD_DATA',
   UPDATE_CREATURE: 'UPDATE_CREATURE',
   DELETE_CREATURE: 'DELETE_CREATURE',
+  NEXT_CREATURE: 'NEXT_CREATURE',
+  PREV_CREATURE: 'PREV_CREATURE',
 };
 
 export function loadData(storageData) {
@@ -39,5 +41,17 @@ export function deleteCreature(creatureId) {
   return {
     type: actionTypes.DELETE_CREATURE,
     payload: creatureId,
+  };
+}
+
+export function nextCreature() {
+  return {
+    type: actionTypes.NEXT_CREATURE,
+  };
+}
+
+export function prevCreature() {
+  return {
+    type: actionTypes.PREV_CREATURE,
   };
 }
